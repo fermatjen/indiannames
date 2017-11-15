@@ -2,6 +2,8 @@ The ner_ind_names.ser file is a Java-serialized List containing ~2.8 million ind
 
 Usage:
 
+In Java
+
 ```java
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream("ner_ind_inames.ser"));
         ArrayList indNamesList = (ArrayList) ois.readObject();
@@ -11,5 +13,14 @@ Usage:
             System.out.println("Indian Name!");
         }
 ``` 
+
+In Scala
+
+```scala
+  val ois = new ObjectInputStream(new FileInputStream("ner_ind_inames.ser"))
+  val indNamesList = ois.readObject().asInstanceOf[List[_]].asScala.toList
+
+  if (indNamesList contains("kunal")) println("Indian Name!")
+```
 
 Remember, Indian population is ~1.3 billion and we have only ~2.8 million in our list. This list is by no way exhaustive but is a good start for your NER experiments.
